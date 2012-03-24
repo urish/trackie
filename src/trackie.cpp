@@ -165,6 +165,9 @@ int main(int argc, char** argv) {
 
 		cvShowImage("Object Correspond", correspond);
 
+		serverCommunication->SendLocation(1, ((float) xAverage) / image->width,
+				((float) yAverage) / image->height);
+
 		//cvSaveImage("result.jpg", correspond, 0);
 		for (i = 0; i < objectKeypoints->total; i++) {
 			CvSURFPoint* r = (CvSURFPoint*) cvGetSeqElem(objectKeypoints, i);

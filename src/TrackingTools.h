@@ -6,30 +6,30 @@
 #include <iostream>
 #include <vector>
 
-
 #pragma once
 // define whether to use approximate nearest-neighbor search
 #define USE_FLANN
 
-class TrackingTools
-{
+class TrackingTools {
 public:
 	TrackingTools(void);
 	~TrackingTools(void);
 	static int
-		locatePlanarObject( const CvSeq* objectKeypoints, const CvSeq* objectDescriptors,
-		const CvSeq* imageKeypoints, const CvSeq* imageDescriptors,
-		const CvPoint src_corners[4], CvPoint dst_corners[4] );
+	locatePlanarObject(const CvSeq* objectKeypoints,
+			const CvSeq* objectDescriptors, const CvSeq* imageKeypoints,
+			const CvSeq* imageDescriptors, const CvPoint src_corners[4],
+			CvPoint dst_corners[4]);
 	static void
-		flannFindPairs( const CvSeq*, const CvSeq* objectDescriptors,
-		const CvSeq*, const CvSeq* imageDescriptors, std::vector<int>& ptpairs );
+	flannFindPairs(const CvSeq*, const CvSeq* objectDescriptors, const CvSeq*,
+			const CvSeq* imageDescriptors, std::vector<int>& ptpairs);
 private:
-	double compareSURFDescriptors( const float* d1, const float* d2, double best, int length);
+	double compareSURFDescriptors(const float* d1, const float* d2, double best,
+			int length);
 	int
-		naiveNearestNeighbor( const float* vec, int laplacian,
-		const CvSeq* model_keypoints,
-		const CvSeq* model_descriptors );
+	naiveNearestNeighbor(const float* vec, int laplacian,
+			const CvSeq* model_keypoints, const CvSeq* model_descriptors);
 	void
-		findPairs( const CvSeq* objectKeypoints, const CvSeq* objectDescriptors,
-		const CvSeq* imageKeypoints, const CvSeq* imageDescriptors, std::vector<int>& ptpairs );
+	findPairs(const CvSeq* objectKeypoints, const CvSeq* objectDescriptors,
+			const CvSeq* imageKeypoints, const CvSeq* imageDescriptors,
+			std::vector<int>& ptpairs);
 };
